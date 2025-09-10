@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Stick App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f7;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 15px;
+      font-size: 22px;
+    }
+    .status {
+      margin: 20px;
+      font-size: 16px;
+      color: #333;
+    }
+    .alert-box {
+      margin: 25px auto;
+      width: 220px;
+      height: 220px;
+      background: #27ae60;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .sensors, .location {
+      margin: 30px auto;
+      width: 80%;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    .sensors h2, .location h2 {
+      margin-top: 0;
+      font-size: 18px;
+      color: #2c3e50;
+    }
+    .sensor-item {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    🦯 Smart Stick App
+  </header>
+
+  <div class="status">
+    Battery: 85% ⚡ | Connected ✅
+  </div>
+
+  <div class="alert-box" id="alertBox">
+    Safe Path
+  </div>
+
+  <div class="sensors">
+    <h2>Health Sensors</h2>
+    <div class="sensor-item">❤ Heart Rate: <span id="heartRate">-- bpm</span></div>
+    <div class="sensor-item">🌡 Temperature: <span id="temperature">-- °C</span></div>
+    <div class="sensor-item">🫁 Oxygen Level: <span id="oxygen">-- %</span></div>
+    <div class="sensor-item">🖐 GSR (Stress Level): <span id="gsr">-- μS</span></div>
+  </div>
+
+  <div class="location">
+    <h2>Location</h2>
+    <div class="sensor-item">📍 Latitude: <span id="latitude">--</span></div>
+    <div class="sensor-item">📍 Longitude: <span id="longitude">--</span></div>
+  </div>
+
+  <script>
+    // Demo values (replace later with live sensor data)
+    document.getElementById("heartRate").textContent = "76 bpm";
+    document.getElementById("temperature").textContent = "36.8 °C";
+    document.getElementById("oxygen").textContent = "98 %";
+    document.getElementById("gsr").textContent = "5.2 μS"; // placeholder GSR value
+
+    // Use browser geolocation for demo
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        document.getElementById("latitude").textContent = position.coords.latitude.toFixed(4);
+        document.getElementById("longitude").textContent = position.coords.longitude.toFixed(4);
+      });
+    } else {
+      document.getElementById("latitude").textContent = "N/A";
+      document.getElementById("longitude").textContent = "N/A";
+    }
+  </script>
+</body>
+</html>
